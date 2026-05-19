@@ -3,23 +3,23 @@ import { ServiceSectionPage } from "@/components/pages/services/ServiceSectionPa
 import { getCategoryBySlug } from "@/components/pages/services/data";
 
 type Props = {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ categorySlug: string }>;
 };
 
 export function generateStaticParams() {
   return [
-    { slug: "estetychna-stomatologiya" },
-    { slug: "implantaciya" },
-    { slug: "ortodontiya" },
-    { slug: "terapiya-ta-profilaktyka" },
-    { slug: "hirurgiya" },
-    { slug: "dytiacha-stomatologiya" },
+    { categorySlug: "estetychna-stomatologiya" },
+    { categorySlug: "implantaciya" },
+    { categorySlug: "ortodontiya" },
+    { categorySlug: "terapiya-ta-profilaktyka" },
+    { categorySlug: "hirurgiya" },
+    { categorySlug: "dytiacha-stomatologiya" },
   ];
 }
 
 export default async function ServiceSectionRoute({ params }: Props) {
-  const { slug } = await params;
-  const category = getCategoryBySlug(slug);
+  const { categorySlug } = await params;
+  const category = getCategoryBySlug(categorySlug);
 
   if (!category) {
     notFound();

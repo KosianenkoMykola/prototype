@@ -8,7 +8,7 @@ import { Container } from "@/components/ui/Container";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import type { ServiceCategory } from "./data";
-import { sectionCases, sectionDoctors, sectionFaqs } from "./data";
+import { sectionCases, sectionDoctors, sectionFaqs, subServiceHref } from "./data";
 
 type Props = {
   category: ServiceCategory;
@@ -44,8 +44,8 @@ export function ServiceSectionPage({ category }: Props) {
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {category.subServices.map((sub) => (
               <Link
-                key={sub.title}
-                href={sub.href}
+                key={sub.slug}
+                href={subServiceHref(category.slug, sub.slug)}
                 className="flex flex-col justify-between rounded border border-neolith-gray-200 bg-white p-6 transition-shadow hover:shadow-md min-h-[150px]"
               >
                 <h2 className="text-lg font-semibold leading-snug text-neolith-black">

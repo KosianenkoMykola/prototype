@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 
 const services = [
-  { label: "Імплантація", href: "/services/implantation" },
+  { label: "Імплантація", href: "/services/implantaciya" },
   { label: "Естетична стоматологія", href: "/services" },
   { label: "Ортодонтія", href: "/services" },
   { label: "Дитяча стоматологія", href: "/services" },

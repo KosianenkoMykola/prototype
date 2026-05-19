@@ -1,6 +1,8 @@
+import { serviceDetailHref } from "./service-details";
+
 export type SubService = {
+  slug: string;
   title: string;
-  href: string;
 };
 
 export type ServiceCategory = {
@@ -11,7 +13,7 @@ export type ServiceCategory = {
   subServices: SubService[];
 };
 
-/** Категорії для індексу /services (замість фрейму «Каталог») */
+/** Категорії для індексу /services (фрейм 02 — Розділ послуг) */
 export const serviceCategories: ServiceCategory[] = [
   {
     slug: "estetychna-stomatologiya",
@@ -20,10 +22,10 @@ export const serviceCategories: ServiceCategory[] = [
     description:
       "Вініри E-max, цифрове моделювання посмішки, відбілювання. Дизайн посмішки під ваше обличчя, не шаблон.",
     subServices: [
-      { title: "Вініри E-max", href: "/services/estetychna-stomatologiya" },
-      { title: "Цифрове моделювання посмішки", href: "/services/estetychna-stomatologiya" },
-      { title: "Професійне відбілювання Zoom", href: "/services/estetychna-stomatologiya" },
-      { title: "Композитні реставрації", href: "/services/estetychna-stomatologiya" },
+      { slug: "viniri-e-max", title: "Вініри E-max" },
+      { slug: "digital-smile-design", title: "Цифрове моделювання посмішки" },
+      { slug: "vidbilyuvannya-zoom", title: "Професійне відбілювання Zoom" },
+      { slug: "kompozytni-restavraciyi", title: "Композитні реставрації" },
     ],
   },
   {
@@ -33,10 +35,10 @@ export const serviceCategories: ServiceCategory[] = [
     description:
       "Straumann, Nobel, протоколи All-on-4 та All-on-6. Заздалегідь знаєте, як буде виглядати результат — завдяки 3D-плануванню.",
     subServices: [
-      { title: "Імплант Straumann під ключ", href: "/services/implantation" },
-      { title: "Імплант Nobel Biocare", href: "/services/implantation" },
-      { title: "All-on-4", href: "/services/implantation" },
-      { title: "Кісткова пластика", href: "/services/implantation" },
+      { slug: "implant-straumann-pid-klyuch", title: "Імплант Straumann під ключ" },
+      { slug: "implant-nobel-biocare", title: "Імплант Nobel Biocare" },
+      { slug: "all-on-4", title: "All-on-4" },
+      { slug: "kistkova-plastyka", title: "Кісткова пластика" },
     ],
   },
   {
@@ -46,10 +48,10 @@ export const serviceCategories: ServiceCategory[] = [
     description:
       "Invisalign, брекет-системи. Лікар-ортодонт із 10+ роками практики. Прозорі елайнери та фіксовані системи.",
     subServices: [
-      { title: "Invisalign — повний курс", href: "/services/ortodontiya" },
-      { title: "Брекет-система металева", href: "/services/ortodontiya" },
-      { title: "Брекет-система керамічна", href: "/services/ortodontiya" },
-      { title: "Ретейнери після лікування", href: "/services/ortodontiya" },
+      { slug: "invisalign-povny-kurs", title: "Invisalign — повний курс" },
+      { slug: "brekety-metal", title: "Брекет-система металева" },
+      { slug: "brekety-keramika", title: "Брекет-система керамічна" },
+      { slug: "reteinery", title: "Ретейнери після лікування" },
     ],
   },
   {
@@ -59,10 +61,10 @@ export const serviceCategories: ServiceCategory[] = [
     description:
       "Профілактика, лікування карієсу, ендодонтія. Регулярний догляд і своєчасне втручання без зайвих процедур.",
     subServices: [
-      { title: "Чистка + полірування", href: "/services/terapiya-ta-profilaktyka" },
-      { title: "Лікування карієсу", href: "/services/terapiya-ta-profilaktyka" },
-      { title: "Лікування кореневих каналів", href: "/services/terapiya-ta-profilaktyka" },
-      { title: "Реставрація передніх зубів", href: "/services/terapiya-ta-profilaktyka" },
+      { slug: "chystka-poliruvannya", title: "Чистка + полірування" },
+      { slug: "likuvannya-kariiesu", title: "Лікування карієсу" },
+      { slug: "likuvannya-kanaliv", title: "Лікування кореневих каналів" },
+      { slug: "restavraciya-perednih", title: "Реставрація передніх зубів" },
     ],
   },
   {
@@ -72,10 +74,10 @@ export const serviceCategories: ServiceCategory[] = [
     description:
       "Видалення зубів мудрості, синус-ліфтинг, резекція. Хірургічні втручання під мікроскопом і сучасною анестезією.",
     subServices: [
-      { title: "Видалення зуба мудрості", href: "/services/hirurgiya" },
-      { title: "Синус-ліфтинг", href: "/services/hirurgiya" },
-      { title: "Резекція верхівки кореня", href: "/services/hirurgiya" },
-      { title: "Frenuloplasty", href: "/services/hirurgiya" },
+      { slug: "vydalennia-mudrosti", title: "Видалення зуба мудрості" },
+      { slug: "sinus-lifting", title: "Синус-ліфтинг" },
+      { slug: "rezekciya-vershivky", title: "Резекція верхівки кореня" },
+      { slug: "frenuloplasty", title: "Frenuloplasty" },
     ],
   },
   {
@@ -85,13 +87,17 @@ export const serviceCategories: ServiceCategory[] = [
     description:
       "Окремий кабінет, ігрова зона, лікар, який вміє говорити з дітьми. Перший візит — безкоштовно.",
     subServices: [
-      { title: "Перший візит — знайомство", href: "/services/dytiacha-stomatologiya" },
-      { title: "Профілактичний огляд", href: "/services/dytiacha-stomatologiya" },
-      { title: "Лікування молочного зуба", href: "/services/dytiacha-stomatologiya" },
-      { title: "Герметизація фісур", href: "/services/dytiacha-stomatologiya" },
+      { slug: "pershyi-vizyt", title: "Перший візит — знайомство" },
+      { slug: "profilaktychnyi-ohlyad", title: "Профілактичний огляд" },
+      { slug: "likuvannya-molochnogo", title: "Лікування молочного зуба" },
+      { slug: "hermetizaciya-fisur", title: "Герметизація фісур" },
     ],
   },
 ];
+
+export function subServiceHref(categorySlug: string, subSlug: string): string {
+  return serviceDetailHref(categorySlug, subSlug);
+}
 
 export function getCategoryBySlug(slug: string): ServiceCategory | undefined {
   return serviceCategories.find((c) => c.slug === slug);
@@ -108,19 +114,19 @@ export const sectionCases = [
     title: "All-on-4 верхня щелепа",
     doctor: "Лікар: д-р Томаш Вуйцик",
     duration: "Термін лікування: 3 місяці",
-    href: "/cases/viniry-e-max-8",
+    href: "/cases/all-on-4-nizhnya",
   },
   {
     title: "Імплантація + керамічна коронка",
     doctor: "Лікар: д-р Каміла Новак",
     duration: "Термін лікування: 4 місяці",
-    href: "/cases/viniry-e-max-8",
+    href: "/cases/implant-koronka",
   },
   {
     title: "Інвізалайн, 9 місяців",
     doctor: "Лікар: д-р Анна Ковальська",
     duration: "Термін лікування: 9 місяців",
-    href: "/cases/viniry-e-max-8",
+    href: "/cases/invisalign-9-misyaciv",
   },
 ];
 
